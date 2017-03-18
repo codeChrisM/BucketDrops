@@ -26,6 +26,7 @@
         android:paddingTop="@dimen/btn_add_vertical_padding"
         android:text="@string/add_a_drop"
         android:textColor="@color/btn_add_color"
-        android:textSize="@dimen/btn_add_font_size" />
+        android:textSize="@dimen/btn_add_font_size"
+        />
 
 </RelativeLayout>

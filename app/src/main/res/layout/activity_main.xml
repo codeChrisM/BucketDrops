@@ -6,5 +6,22 @@
     android:layout_height="match_parent"
     tools:context="com.codechris.bucketdrops.ActivityMain">
 
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <ImageView
+        android:id="@+id/iv_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_drops"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
     <include layout="@layout/empty_drops"/>
 </RelativeLayout>

@@ -15,6 +15,8 @@
     <dimen name="btn_add_vertical_padding">8dp</dimen>
     <dimen name="btn_add_font_size">28sp</dimen>
     <dimen name="btn_add_it_stroke_width">1dp</dimen>
+    <dimen name="tv_title_verticle_margin">36dp</dimen>
+    <dimen name="tv_font_size">18sp</dimen>
 
 
 </resources>
