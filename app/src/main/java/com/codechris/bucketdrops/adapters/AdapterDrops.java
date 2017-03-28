@@ -9,37 +9,39 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.codechris.bucketdrops.R;
+import com.codechris.bucketdrops.beans.Drop;
 
 import java.util.ArrayList;
 
-import static android.content.ContentValues.TAG;
+import io.realm.RealmResults;
+
+import static android.media.CamcorderProfile.get;
 
 /**
  * Created by Christopher on 3/21/2017.
  */
 
 public class AdapterDrops extends RecyclerView.Adapter<AdapterDrops.DropHolder> {
-    private LayoutInflater mInflator;
-    private ArrayList<String> mIteams = new ArrayList<>();
-    public static  final String TAG = "Test Text";
+    private LayoutInflater mInflater;
+    private RealmResults<Drop> mResults;
+    public static final String TAG = "codeChris Tag";
 
 
-    public AdapterDrops(Context context){
-        mInflator= LayoutInflater.from(context);
-        mIteams = generateValues();
+    public AdapterDrops(Context context, RealmResults<Drop> results){
+        mInflater = LayoutInflater.from(context);
+        update(results);
 
     }
-    public static ArrayList<String> generateValues(){
-        ArrayList<String> dummyValues = new ArrayList<>();
-        for (int i= 1; i < 101; i++){
-            dummyValues.add("Item " + i);
-        }
-        return dummyValues;
+
+    public void update( RealmResults<Drop> results){
+        mResults = results;
+        notifyDataSetChanged();
     }
+
 
     @Override
     public DropHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflator.inflate(R.layout.row_drop, parent, false);
+        View view = mInflater.inflate(R.layout.row_drop, parent, false);
         DropHolder holder = new DropHolder(view);
         Log.d(TAG, "onCreateViewHolder: ");
         return holder;
@@ -47,7 +49,8 @@ public class AdapterDrops extends RecyclerView.Adapter<AdapterDrops.DropHolder> 
 
     @Override
     public void onBindViewHolder(DropHolder holder, int position) {
-        holder.mTextWhat.setText(mIteams.get(position));
+        Drop drop = mResults.get(position);
+        holder.mTextWhat.setText(drop.getWhat());
         Log.d(TAG, "onBindViewHolder: " +  position);
 
 
@@ -55,7 +58,7 @@ public class AdapterDrops extends RecyclerView.Adapter<AdapterDrops.DropHolder> 
 
     @Override
     public int getItemCount() {
-        return 100;
+        return mResults.size();
     }
 
     public static class DropHolder extends RecyclerView.ViewHolder{

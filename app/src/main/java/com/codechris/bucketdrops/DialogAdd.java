@@ -50,15 +50,17 @@ public class DialogAdd extends DialogFragment{
         }
     };
 
-    //TODO process date
+
 
     private void addAction() {
         String what= mInputWhat.getText().toString();
         long now = System.currentTimeMillis();
 
-        Realm.init(getContext());
-        RealmConfiguration configuration = new RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build();
-        Realm.setDefaultConfiguration(configuration);
+        //Realm.init(getContext());
+        //--below was CUT and moved
+        //RealmConfiguration configuration = new RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build();
+        //Realm.setDefaultConfiguration(configuration);
+        //----
         Realm realm = Realm.getDefaultInstance();
         Drop drop = new Drop(what, now, 0, false);
 
