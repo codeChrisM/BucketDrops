@@ -6,18 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.codechris.bucketdrops.ActivityMain"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
-
     <ImageView
         android:id="@+id/iv_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-    <android.support.v7.widget.RecyclerView
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+
+    <com.codechris.bucketdrops.widgets.BucketRecylerView
         android:id="@+id/rv_drops"
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
@@ -25,5 +25,7 @@
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
 
-    <include layout="@layout/empty_drops"/>
+    <include
+        android:id="@+id/empty_drops"
+        layout="@layout/empty_drops"/>
 </RelativeLayout>

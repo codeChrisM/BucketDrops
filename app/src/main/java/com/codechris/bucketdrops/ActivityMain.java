@@ -2,18 +2,16 @@ package com.codechris.bucketdrops;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
-import android.support.v7.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.codechris.bucketdrops.adapters.AdapterDrops;
 import com.codechris.bucketdrops.beans.Drop;
+import com.codechris.bucketdrops.widgets.BucketRecylerView;
 
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
@@ -24,9 +22,10 @@ public class ActivityMain extends AppCompatActivity {
 
     Toolbar mtoolbar;
     Button mBtnAdd;
-    RecyclerView mRecyler;
+    BucketRecylerView mRecyler;
     Realm mRealm;
     RealmResults<Drop> mResults;
+    View mEmptyView;
     AdapterDrops mAdaptor;
     private View.OnClickListener mBtnAddListener= new View.OnClickListener(){
 
@@ -61,16 +60,18 @@ public class ActivityMain extends AppCompatActivity {
         mRealm=Realm.getDefaultInstance();
         mResults = mRealm.where(Drop.class).findAllAsync();
         mtoolbar = (Toolbar) findViewById(R.id.toolbar);
-        //---following video
-        //mRealm=Realm.getDefaultInstance();
-        //RealmResults<Drop> results = mRealm.where(Drop.class).findAll();
-        //----end--
+        mtoolbar.setTitle("Bucket Drops yo!!");
+        mEmptyView = findViewById(R.id.empty_drops);
+
         mBtnAdd = (Button) findViewById(R.id.btn_add);
-        mRecyler=(RecyclerView) findViewById(R.id.rv_drops);
-        //this was changed
+        mRecyler=(BucketRecylerView) findViewById(R.id.rv_drops);
+
+
         mAdaptor = new AdapterDrops(this, mResults);
         mRecyler.setAdapter(mAdaptor);
-        //----
+        mRecyler.hideIfEmpty(mtoolbar);
+        mRecyler.showIfEmpty(mEmptyView);
+
         mBtnAdd.setOnClickListener(mBtnAddListener);
         setSupportActionBar(mtoolbar);
         initBackgroundImage();
