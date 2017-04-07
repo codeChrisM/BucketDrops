@@ -2,6 +2,7 @@ package com.codechris.bucketdrops;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.codechris.bucketdrops.adapters.AdapterDrops;
+import com.codechris.bucketdrops.adapters.Divider;
 import com.codechris.bucketdrops.beans.Drop;
 import com.codechris.bucketdrops.widgets.BucketRecylerView;
 
@@ -65,6 +67,7 @@ public class ActivityMain extends AppCompatActivity {
 
         mBtnAdd = (Button) findViewById(R.id.btn_add);
         mRecyler=(BucketRecylerView) findViewById(R.id.rv_drops);
+        mRecyler.addItemDecoration(new Divider(this, LinearLayoutManager.VERTICAL));
 
 
         mAdaptor = new AdapterDrops(this, mResults);

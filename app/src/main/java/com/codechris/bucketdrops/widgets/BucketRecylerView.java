@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Adapter;
 
 import com.codechris.bucketdrops.extras.Util;
 
@@ -56,7 +57,7 @@ public class BucketRecylerView extends RecyclerView {
 
     private void toggleViews() {
         if(getAdapter()!=null && !mEmptyViews.isEmpty() && !mNonEmptyViews.isEmpty()){
-            if(getAdapter().getItemCount()==0){
+            if(getAdapter().getItemCount()==1){
                 //show all the empty views
                 Util.showViews(mEmptyViews);
 
